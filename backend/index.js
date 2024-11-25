@@ -20,15 +20,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // CORS Configuration
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000", // Local frontend
-      "https://career-hunt.onrender.com", // Deployed frontend
-    ],
-    credentials: true,
-  })
-);
+// Configure CORS
+const allowedOrigins = ['http://localhost:5173', 'https://career-hunt.onrender.com'];
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true, // Include cookies or authorization headers if needed
+}));
+
 
 // Connect to MongoDB
 connectDB();
