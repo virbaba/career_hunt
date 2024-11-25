@@ -9,6 +9,8 @@ import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import path from "path";
 
+
+
 // Initialize app
 const app = express();
 dotenv.config();
@@ -20,13 +22,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // CORS Configuration
-// Configure CORS
-const allowedOrigins = ['http://localhost:5173', 'https://career-hunt.onrender.com'];
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true, // Include cookies or authorization headers if needed
-}));
-
+const corsOptions = {
+  origin: "http://localhost:5173",
+  credentials: true,
+}; 
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 connectDB();
